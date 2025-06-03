@@ -1,0 +1,22 @@
+﻿@model List<Papyrus.Models.Route>
+
+<h4>Маршрут согласования</h4>
+<table class="table table-sm">
+    <thead>
+        <tr>
+            <th>Порядок</th>
+            <th>Согласующий</th>
+            <th>Статус</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var route in Model)
+        {
+            <tr>
+                <td>@route.Order</td>
+                <td>@route.Approver.UserName</td>
+                <td>@(route.IsApproved ? "Одобрен" : "Ожидает")</td>
+            </tr>
+        }
+    </tbody>
+</table>

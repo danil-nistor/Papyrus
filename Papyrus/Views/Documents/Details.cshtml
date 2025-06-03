@@ -1,0 +1,31 @@
+﻿@model Papyrus.Models.Document
+@{
+    ViewData["Title"] = "Детали документа";
+}
+
+<h2>Детали документа</h2>
+
+<div>
+    <strong>Название:</strong> @Model.Name
+</div>
+<div>
+    <strong>Описание:</strong> @Model.Description
+</div>
+<div>
+    <strong>Статус:</strong> @Model.Status?.Name
+</div>
+<div>
+    <strong>Автор:</strong> @Model.Author?.UserName
+</div>
+<div>
+    <strong>Дата создания:</strong> @Model.CreatedDate.ToShortDateString()
+</div>
+<div class="mt-3">
+    <a href="@Model.FilePath" target="_blank" class="btn btn-outline-primary">Посмотреть файл</a>
+</div>
+
+<hr />
+<partial name="_CommentsList" model="Model.Comments.ToList()" />
+<partial name="_RouteList" model="Model.Routes.OrderBy(r => r.Order).ToList()" />
+
+<a asp-action="Index" class="btn btn-secondary mt-3">Назад к списку</a>

@@ -1,0 +1,42 @@
+Aa123456/
+aspnet-Papyrus-d5f3c235-e6f8-4067-ac03-7bbcd135761d - Db которая была по умолчанию 
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>Документы</h2>
+
+<p>
+     <a asp-action="Upload">Создать новый документ</a> 
+    <!-- <form asp-action="Upload" method="post" enctype="multipart/form-data">
+        <input asp-for="File" type="file" class="form-control" />
+    </form>-->
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Автор</th>
+            <th>Статус</th>
+            <th>Дата создания</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Name)</td>
+                <td>@Html.DisplayFor(modelItem => item.Author.UserName)</td>
+                <td>@Html.DisplayFor(modelItem => item.Status.Name)</td>
+                <td>@item.CreatedDate.ToShortDateString()</td>
+                <td>
+                    <a asp-action="Details" asp-route-id="@item.Id">Подробнее</a> |
+                    <a asp-action="Approve" asp-route-id="@item.Id">Одобрить</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

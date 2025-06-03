@@ -1,0 +1,34 @@
+﻿@model Papyrus.Models.Document
+@{
+    ViewData["Title"] = "Редактировать документ";
+}
+
+<h2>Редактировать документ</h2>
+
+<form asp-action="Edit" method="post" enctype="multipart/form-data">
+    <input type="hidden" asp-for="Id" />
+
+    <div class="form-group">
+        <label>Название</label>
+        <input asp-for="Name" class="form-control" />
+        <span asp-validation-for="Name" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Описание</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+        <span asp-validation-for="Description" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
+        <label>Текущий файл</label>
+        <p><a href="@Model.FilePath">@Model.Name</a></p>
+    </div>
+
+    <div class="form-group">
+        <label>Загрузить новый файл</label>
+        <input type="file" name="file" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-3">Обновить</button>
+</form>
